@@ -1,0 +1,50 @@
+---
+import Navegation from "@/Navegation.astro";
+const { title } = Astro.props as {
+    title: string;
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <main class="relative">
+            <Navegation />
+            <slot />
+        </main>
+    </body>
+</html>
+<style is:global>
+    * {
+        box-sizing: border-box;
+    }
+    html {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+        background-color: #f6f6f6;
+        scroll-behavior: smooth;
+    }
+    html::-webkit-scrollbar {
+        transition: 250ms ease-in-out;
+        border-radius: 5px;
+        width: 10px;
+        height: 10px;
+    }
+    html::-webkit-scrollbar-track {
+        background: #dddddd;
+    }
+    html::-webkit-scrollbar-thumb {
+        background: #d100fb;
+    }
+    html::-webkit-scrollbar-thumb:hover {
+        background: #c102e7;
+    }
+</style>

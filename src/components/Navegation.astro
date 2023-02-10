@@ -1,0 +1,83 @@
+<nav
+    class="w-96 h-16 bg-slate-700 text-white rounded-t-2xl flex flex-col fixed z-10 bottom-0 left-1/2 transform -translate-x-1/2"
+>
+    <ul class="flex flex-row m-auto text-lg gap-5 font-semibold">
+        <l1 class="active" id="link" data-url="home">
+            <a class="hover:brightness-75" href="#home">Home</a>
+        </l1>
+        <l1 class="" id="link" data-url="skills">
+            <a class="hover:brightness-75" href="#skills">Skills</a>
+        </l1>
+        <l1 class="" id="link" data-url="projects">
+            <a class="hover:brightness-75" href="#projects">Projects</a>
+        </l1>
+        <l1 class="" id="link" data-url="about">
+            <a class="hover:brightness-75" href="#about">About</a>
+        </l1>
+        <l1 class="" id="link" data-url="contact">
+            <a class="hover:brightness-75" href="#contact">Contact</a>
+        </l1>
+    </ul>
+</nav>
+
+<style>
+    .active {
+        color: #d237ee;
+        transition: 150ms ease-in-out;
+    }
+</style>
+
+<script type="module">
+    const $$ = (selector) => document.querySelectorAll(selector);
+    const sections = $$(".section");
+    const links = $$("#link");
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const itemActual = Array.from(links).find(
+                        (item) => item.dataset.url === entry.target.id
+                    );
+                    itemActual.classList.add("active");
+                    links.forEach((link) => {
+                        if (link != itemActual) {
+                            link.classList.remove("active");
+                        }
+                    });
+                }
+            });
+        },
+        {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.8
+        }
+    );
+    sections.forEach((section) => observer.observe(section));
+    const action = (e, key) => {
+        e.preventDefault();
+        const a = links[Number(key) - 1].querySelector("a");
+        a.click();
+    };
+    window.addEventListener("keydown", (e) => {
+        if (e.ctrlKey) {
+            switch (e.key) {
+                case "1":
+                    action(e, e.key);
+                    break;
+                case "2":
+                    action(e, e.key);
+                    break;
+                case "3":
+                    action(e, e.key);
+                    break;
+                case "4":
+                    action(e, e.key);
+                    break;
+                case "5":
+                    action(e, e.key);
+                    break;
+            }
+        }
+    });
+</script>
